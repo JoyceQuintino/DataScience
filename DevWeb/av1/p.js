@@ -1,7 +1,8 @@
 var instituicoes = []
 var alunos = []
 var idInst = 0
-var matAluno = 100
+var idAlu = 0
+var matAluno = 201820000
 
 function addObj(ins){
     if(ins == 'cad_inst'){
@@ -10,45 +11,60 @@ function addObj(ins){
             alert('Campo vazio, preencher, por favor !')
         else{
             instituicoes.push({name: nameInst.value, id: idInst})
+            instituicoes.sort()
             idInst++
-            document.write('deu certo')
+            atualizar()
             showInst()
             nameInst.value = ''
         }   
     }
     if(ins == 'cad_alu'){
         let nameAlu = document.getElementById('cad_alu')
-        if(nameAlu.value == '' && instituicoes.length == 0)
-            alert('Campos vazios, informe-os, por favor !')
-        else {
-            if(instituicoes.length == 0){
-                alert('Cadastre uma instituição')
-            } else {
-                let nameInst = document.getElementById('sel_inst').value
-                let indexOpt = document.getElementById('sel_inst').selectedIndex
-                instituicoes.forEach((obj, index) => {
-                    if(indexOpt == index){
-                        alunos.push({name: nameAlu.value, instituicao: nameInst, id: matAluno, idInst: obj.id})
-                        nameAlu.value = ''
-                    }
-                })
-                document.write('deu certo')
-            }
-        }
+        if(nameAlu.value == '')
+            alert('Campo vazio, preencher, por favor !')
+        else{
+            alunos.push({name: nameAlu.value, id: idAlu})
+            alunos.sort()
+            idAlu++
+            nameAlu.value = ''
+        }   
     }
 }
 
-function showInst(){
-    let showInst = document.getElementById('sel_inst')
-    showInst.innerHTML = ''
+function showInst() {
+    let list_instituicoes = document.getElementById('sel_inst')
+    list_instituicoes.innerHTML = ''
     instituicoes.forEach((obj) => {
-        let option = document.createElement('option')
-        option.text = obj.name
-        showInst.add(option)
+        let opcao = document.createElement('option')
+        opcao.text =obj.nome
+        list_instituicoes.add(opcao)
     })
 }
 
-function showInstArea() 
+function atualizar() {
+    const list_instituicoes = document.getElementById('list_inst')
+    list_instituicoes.innerHTML = ''
+    instituicoes.forEach((obj, index) => {
+        list_instituicoes.appendChild(criarItem(obj, index))
+    })
+}
+
+function criarItem(obj, index) {
+    let e = document.createElement('li')
+    e.innerHTML = descricao(obj, index)
+    return e
+}
+
+function descricao(obj, index) {
+    return obj.nome + ' : ' + obj.id + '<button onclick="editar('+ index +')">Editar</button>'
+}
+
+atualizarHTMLItemInstituicoes = () => {
+    atualizar()
+    listar()
+}
+
+/*function showInstArea() 
 {           
     document.getElementById('instArea').innerHTML = getInst();
 }
@@ -57,7 +73,8 @@ function getInst(){
     let inst = document.getElementById('instArea')
     var result  = ''
 
-    for (i = 0; i < instituicoes.length; i++)
-        result = result + instituicoes[i]['name'] + ' ' + instituicoes[i]['id'] + '\r\n'
+    for (let i = 1; i <= instituicoes.length; i++)
+        result = instituicoes[i]['name'] + ' ' + instituicoes[i]['id'] + '\r\n'
     return result
 }
+*/
