@@ -23,11 +23,11 @@
                         <label class="sr-only" for="inst">Instituições:</label>
                         <input type="text" class="form-control" placeholder="Instituição" id="inst">
                     </div>
-                    <button type="submit" class="btn btn-info" id="pInst">Pesquisar</button>
                     <div class="form-group">
                         <label for="instituicoes">Nomes das instituições:</label>
-                        <textarea class="form-control" rows="5" id="instituicoes"></textarea>
-                    </div> 
+                        <textarea class="form-control" rows="5" id="instArea"></textarea>
+                    </div>
+                    <button id="pInst" type="submit" class="btn btn-info" onclick="showInstArea()">Pesquisar</button> 
                     <button id="d1" type="submit" class="btn btn-info">Alterar</button>
                     <button id="a1" type="submit" class="btn btn-info">Apagar</button>
                 </form> 
@@ -39,11 +39,11 @@
                         <label class="sr-only" for="aluno">Aluno:</label>
                         <input type="text" class="form-control" placeholder="Aluno" id="alu">
                     </div>
-                    <button type="submit" class="btn btn-info" id="pAlu">Pesquisar</button>
                     <div class="form-group">
                         <label for="alunos">Nomes dos alunos:</label>
                         <textarea class="form-control" rows="5" id="alunos"></textarea>
-                    </div> 
+                    </div>
+                    <button id="pAlu" type="submit" class="btn btn-info">Pesquisar</button> 
                     <button id="d2" type="submit" class="btn btn-info">Alterar</button>
                     <button id="a2" type="submit" class="btn btn-info">Apagar</button>
                 </form> 

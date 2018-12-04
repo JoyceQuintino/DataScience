@@ -47,3 +47,17 @@ function showInst(){
         showInst.add(option)
     })
 }
+
+function showInstArea() 
+{           
+    document.getElementById('instArea').innerHTML = getInst();
+}
+
+function getInst(){
+    let inst = document.getElementById('instArea')
+    var result  = ''
+
+    for (i = 0; i < instituicoes.length; i++)
+        result = result + instituicoes[i]['name'] + ' ' + instituicoes[i]['id'] + '\r\n'
+    return result
+}
