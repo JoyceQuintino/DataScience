@@ -12,23 +12,28 @@ function addObj(ins){
             instituicoes.push({name: nameInst.value, id: idInst})
             idInst++
             document.write('deu certo')
+            showInst()
+            nameInst.value = ''
         }   
     }
     if(ins == 'cad_alu'){
-        let nameAlu = document.getElementById('cad_inst')
-    if(nameAlu.value == ''){
-        alert('Campo vazio, preencher, por favor !')
-    } else {
-        if(instituicoes.length == 0){
-            alert('Cadastre uma instituição')
-        } else {
-            let nameInst = document.getElementById('sel_inst').value
-            let indexOpt = document.getElementById("sel_inst").selectedIndex
-            instituicoes.forEach((obj, index) => {
-                if(indexOption == index){
-                    alunos.push({name: nameAlu.value, instituicao: nomeInstituicao, id: matAluno, idInst: obj.id})
-                }
-            })
+        let nameAlu = document.getElementById('cad_alu')
+        if(nameAlu.value == '' && instituicoes.length == 0)
+            alert('Campos vazios, informe-os, por favor !')
+        else {
+            if(instituicoes.length == 0){
+                alert('Cadastre uma instituição')
+            } else {
+                let nameInst = document.getElementById('sel_inst').value
+                let indexOpt = document.getElementById("sel_inst").selectedIndex
+                instituicoes.forEach((obj, index) => {
+                    if(indexOpt == index){
+                        alunos.push({name: nameAlu.value, instituicao: nameInst, id: matAluno, idInst: obj.id})
+                        nameAlu.value = ''
+                    }
+                })
+                document.write('deu certo')
+            }
         }
     }
 }
