@@ -1,0 +1,9 @@
+.divBody{
+    width: 50%;
+        height: 50px;
+        line-height: 50px;
+        text-align:center;
+        top: 50%; /* posiciona na metade da tela */
+        margin: auto;
+}
+
