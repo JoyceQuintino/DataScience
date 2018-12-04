@@ -13,7 +13,7 @@ function addObj(ins){
             instituicoes.push({name: nameInst.value, id: idInst})
             instituicoes.sort()
             idInst++
-            atualizar()
+            updateInst()
             showInst()
             nameInst.value = ''
         }   
@@ -22,12 +22,17 @@ function addObj(ins){
         let nameAlu = document.getElementById('cad_alu')
         if(nameAlu.value == '')
             alert('Campo vazio, preencher, por favor !')
-        else{
-            alunos.push({name: nameAlu.value, id: idAlu})
-            alunos.sort()
-            idAlu++
-            nameAlu.value = ''
-        }   
+        else {
+            let nameInst = document.getElementById('sel_inst').value
+            let indexOption = document.getElementById("sel_inst").selectedIndex
+            instituicoes.forEach((obj, index) => {
+                if(indexOption == index){
+                    alunos.push({nome: nameAlu.value, instituicao: nameInst, id: matAluno, idInst: obj.id})
+                    nameAlu.value = ''
+                }
+            })
+            
+        }
     }
 }
 
@@ -41,15 +46,15 @@ function showInst() {
     })
 }
 
-function atualizar() {
+function updateInst() {
     const list_instituicoes = document.getElementById('list_inst')
     list_instituicoes.innerHTML = ''
     instituicoes.forEach((obj, index) => {
-        list_instituicoes.appendChild(criarItem(obj, index))
+        list_instituicoes.appendChild(createIt(obj, index))
     })
 }
 
-function criarItem(obj, index) {
+function createIt(obj, index) {
     let e = document.createElement('li')
     e.innerHTML = descricao(obj, index)
     return e
@@ -60,7 +65,7 @@ function descricao(obj, index) {
 }
 
 atualizarHTMLItemInstituicoes = () => {
-    atualizar()
+    updateInst()
     listar()
 }
 
