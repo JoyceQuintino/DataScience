@@ -25,7 +25,7 @@ function addObj(ins){
                 alert('Cadastre uma instituição')
             } else {
                 let nameInst = document.getElementById('sel_inst').value
-                let indexOpt = document.getElementById("sel_inst").selectedIndex
+                let indexOpt = document.getElementById('sel_inst').selectedIndex
                 instituicoes.forEach((obj, index) => {
                     if(indexOpt == index){
                         alunos.push({name: nameAlu.value, instituicao: nameInst, id: matAluno, idInst: obj.id})
@@ -47,5 +47,3 @@ function showInst(){
         showInst.add(option)
     })
 }
-
-
