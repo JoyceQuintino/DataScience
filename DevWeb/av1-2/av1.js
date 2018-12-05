@@ -1,22 +1,23 @@
 var instituicoes = []
 var alunos = []
-var idInst = 0
-var idAlu = 0
+var idInst = 1
+var idAlu = 1
 var matAluno = 2020000
 
-function addObj(ins){
+function addObj(ins) {
     if(ins == 'cad_inst'){
         let nameInst = document.getElementById('cad_inst')
         if(nameInst.value == '')
             alert('Campo vazio, preencher, por favor !')
         else{
-            instituicoes.push({id: idInst, name: nameInst.value})
+            let nameInst = document.getElementById('cad_inst')
+            instituicoes.push({id: idInst, nome: nameInst.value})
             instituicoes.sort()
             idInst++
             updateInst()
             showInst()
             nameInst.value = ''
-        }   
+        }
     }
     if(ins == 'cad_alu'){
         let nameAlu = document.getElementById('cad_alu')
@@ -32,45 +33,39 @@ function addObj(ins){
                     nameAlu.value = ''
                 }
             })
-            
         }
     }
 }
 
 function showInst() {
-    let listInst = document.getElementById('sel_inst')
-    listInst.innerHTML = ''
+    let list_instituicoes = document.getElementById('select_inst')
+    list_instituicoes.innerHTML = ''
     instituicoes.forEach((obj) => {
-        let op = document.createElement('option')
-        op.text =obj.nome
-        listInst.add(op)
+        let opcao = document.createElement('option')
+        opcao.text =obj.nome
+        list_instituicoes.add(opcao)
     })
 }
 
 function updateInst() {
-    const listInst = document.getElementById('list_inst')
-    listInst.innerHTML = ''
+    const list_instituicoes = document.getElementById('list_inst')
+    list_instituicoes.innerHTML = ''
     instituicoes.forEach((obj, index) => {
-        listInst.appendChild(createIt(obj, index))
+        list_instituicoes.appendChild(criarItem(obj, index))
     })
 }
 
-function atualizarHTMLItemInstituicoes(){
+function criarItem(obj, index) {
+    let e = document.createElement('li')
+    e.innerHTML = descricao(obj, index)
+    return e
+}
+
+function descricao(obj, index) {
+    return obj.nome + ' : ' + obj.id
+}
+
+atualizarHTMLItemInstituicoes = () => {
     updateInst()
     showInst()
 }
-
-/*function showInstArea() 
-{           
-    document.getElementById('instArea').innerHTML = getInst();
-}
-
-function getInst(){
-    let inst = document.getElementById('instArea')
-    var result  = ''
-
-    for (let i = 1; i <= instituicoes.length; i++)
-        result = instituicoes[i]['name'] + ' ' + instituicoes[i]['id'] + '\r\n'
-    return result
-}
-*/
