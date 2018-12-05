@@ -28,8 +28,11 @@ function addObj(ins) {
             let indexOption = document.getElementById("sel_inst").selectedIndex
             instituicoes.forEach((index, obj) => {
                 if(indexOption == index){
-                    alunos.push({id: matAluno, nome: nameAlu.value, idInst: obj.id, instituicao: nameInst})
+                    alunos.push({id: idAlu, nome: nameAlu.value, idInst: obj.id, nameInst: nameInst})
+                    alunos.sort()
                     idAlu++
+                    updateAlu()
+                    showAlu()
                     nameAlu.value = ''
                 }
             })
@@ -37,8 +40,10 @@ function addObj(ins) {
     }
 }
 
+//funções da instituição
+
 function showInst() {
-    let list_instituicoes = document.getElementById('select_inst')
+    let list_instituicoes = document.getElementById('sel_inst')
     list_instituicoes.innerHTML = ''
     instituicoes.forEach((obj) => {
         let opcao = document.createElement('option')
@@ -51,21 +56,56 @@ function updateInst() {
     const list_instituicoes = document.getElementById('list_inst')
     list_instituicoes.innerHTML = ''
     instituicoes.forEach((obj, index) => {
-        list_instituicoes.appendChild(criarItem(obj, index))
+        list_instituicoes.appendChild(createIt(obj, index))
     })
 }
 
-function criarItem(obj, index) {
-    let e = document.createElement('li')
-    e.innerHTML = descricao(obj, index)
-    return e
+function createIt(obj, index) {
+    let ele = document.createElement('li')
+    ele.innerHTML = descricao(obj, index)
+    return ele
 }
 
 function descricao(obj, index) {
     return obj.nome + ' : ' + obj.id
 }
 
-atualizarHTMLItemInstituicoes = () => {
+atualizarHTMLInstituicoes = () => {
     updateInst()
     showInst()
 }
+
+//funções do aluno
+
+function showAlu() {
+    let list_alu = document.getElementById('cad_alu')
+    list_alu.innerHTML = ''
+    alunos.forEach((obj) => {
+        let op = document.createElement('option')
+        op.text =obj.nome
+        list_alu.add(op)
+    })
+}
+
+function updateAlu() {
+    const list_alu = document.getElementById('list_alu')
+    list_alu.innerHTML = ''
+    alunos.forEach((index, obj) => {
+        list_alu.appendChild(createItAlu(index, obj))
+    })
+}
+
+function createItAlu(index, obj) {
+    let ele = document.createElement('li')
+    ele.innerHTML = descricaoAlu(index, obj)
+    return ele
+}
+
+function descricaoAlu(obj, index){
+    return obj.nome + ' : ' + obj.instituicao
+}
+
+atualizarHTMLAlunos = () => {
+    updateAlu()
+}
+
